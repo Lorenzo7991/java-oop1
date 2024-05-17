@@ -1,5 +1,4 @@
 package org.exercise.javabank;
-
 import java.util.Scanner;
 
 public class Bank {
@@ -8,8 +7,18 @@ public class Bank {
         Scanner scanner = new Scanner(System.in);
 
         // Username input
-        System.out.println("Inserisci il tuo nome");
-        String userName = scanner.nextLine();
+        String userName;
+        do {
+            System.out.println("Inserisci il tuo nome:");
+            userName = scanner.nextLine().trim();
+            // Username validation
+            if (userName.isEmpty()) {
+                System.out.println("Il nome utente non può essere vuoto. Riprova.");
+            } else if (!userName.matches("[a-zA-Z]+")) {
+                System.out.println("Il nome utente può contenere solo caratteri alfabetici. Riprova.");
+            }
+            // Keep asking username until the validation is correct
+        } while (userName.isEmpty() || !userName.matches("[a-zA-Z]+"));
 
         //Create a user bank account with the username and a random account number
         BankAccount userBankAccount = new BankAccount(userName);
@@ -55,4 +64,3 @@ public class Bank {
     }
 
 }
-
