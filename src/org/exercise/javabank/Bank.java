@@ -27,25 +27,55 @@ public class Bank {
         int option;
         // User menu
         do {
-            System.out.println("Ciao " + userName + ", " + "Cosa vuoi fare?");
+            System.out.println("Ciao, cosa vuoi fare?");
             System.out.println("1. Versare una somma di denaro");
             System.out.println("2. Prelevare una somma di denaro");
             System.out.println("3. Uscire");
             System.out.print("Scelta: ");
-            option = Integer.parseInt(scanner.nextLine());
 
+            // Validate user input
+            while (!scanner.hasNextInt()) {
+                System.out.println("Errore: devi inserire un numero valido.");
+                System.out.print("Scelta: ");
+                scanner.next();
+            }
+            option = scanner.nextInt();
+
+            // Handle user choice
             switch (option) {
                 case 1:
                     // Deposit
-                    System.out.print("Inserisci la somma da versare: ");
-                    double amountPaid = Double.parseDouble(scanner.nextLine());
+                    double amountPaid;
+                    do {
+                        System.out.print("Inserisci la somma da versare: ");
+                        while (!scanner.hasNextDouble()) {
+                            System.out.println("Errore: inserisci un importo valido.");
+                            System.out.print("Inserisci la somma da versare: ");
+                            scanner.next();
+                        }
+                        amountPaid = scanner.nextDouble();
+                        if (amountPaid <= 0) {
+                            System.out.println("Errore: inserisci un importo positivo.");
+                        }
+                    } while (amountPaid <= 0);
                     userBankAccount.deposit(amountPaid);
                     System.out.println("Operazione completata. Saldo attuale: " + String.format("%.2f", userBankAccount.getBankBalance()) + "€");
                     break;
                 case 2:
                     // Withdrawal
-                    System.out.print("Inserisci la somma da prelevare: ");
-                    double amountWithdrawn = Double.parseDouble(scanner.nextLine());
+                    double amountWithdrawn;
+                    do {
+                        System.out.print("Inserisci la somma da prelevare: ");
+                        while (!scanner.hasNextDouble()) {
+                            System.out.println("Errore: inserisci un importo valido.");
+                            System.out.print("Inserisci la somma da versare: ");
+                            scanner.next();
+                        }
+                        amountWithdrawn = scanner.nextDouble();
+                        if (amountWithdrawn <= 0) {
+                            System.out.println("Errore: inserisci un importo positivo.");
+                        }
+                    } while (amountWithdrawn <= 0);
                     if(userBankAccount.withdrawal(amountWithdrawn)){
                         System.out.println("Operazione completata. Saldo attuale: " + String.format("%.2f", userBankAccount.getBankBalance()) + "€");
                     } else {
@@ -62,5 +92,4 @@ public class Bank {
         } while (option != 3);
         scanner.close();
     }
-
 }
