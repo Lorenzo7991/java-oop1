@@ -3,7 +3,7 @@ package org.exercise.javashop;
 import java.util.Random;
 
 public class Product {
-    // Atributes
+    // Attributes
     private int productCode;
     private String name;
     private String description;
@@ -12,7 +12,7 @@ public class Product {
 
     // Builder
     public Product(String name, int productCode, String description, double price, double vat) {
-        // Assignment of the random object to create the product code as randomized number
+        // Assignment of product code with random object to create product code as randomized number between 0 and 9999
         this.productCode = new Random().nextInt(1000000);
         this.name = name;
         this.description = description;
@@ -52,6 +52,25 @@ public class Product {
     public void setVat(double vat) {
         this.vat = vat;
     }
+
+    // Get method to obtain formatted code
+    public String getCode(){
+        return String.format("%06d", productCode);
+    }
+
+    // Get method to obtain price including VAT
+    public double getVatPrice(){
+        return price + (price + vat / 100);
+    }
+
+
+    // Get method to obtain extended name with code product
+    public String getExtendedName(){
+        return getCode() + "/" + name;
+    }
+
+
+
 
 
 }
