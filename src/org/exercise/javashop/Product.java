@@ -1,5 +1,4 @@
 package org.exercise.javashop;
-
 import java.util.Random;
 
 public class Product {
