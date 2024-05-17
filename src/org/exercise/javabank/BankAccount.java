@@ -32,4 +32,39 @@ public class BankAccount {
     public double getBankBalance() {
         return bankBalance;
     }
+
+    // Deposit method
+    public void deposit(double sum){
+        bankBalance += sum;
+    }
+
+    // Withdrawal method
+    public boolean withdrawal(double sum){
+        if (bankBalance >= sum){
+            bankBalance -= sum;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Method for account information
+    public String getBankAccountInfo(){
+      return "Numero conto: " + bankAccountNumber + "\n" + "Utente conto: " + userName + "\n" + "Saldo: " + bankBalance + String.format("%.2f", bankBalance) + "€";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
