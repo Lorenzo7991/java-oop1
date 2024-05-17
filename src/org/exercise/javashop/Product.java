@@ -1,5 +1,5 @@
 package org.exercise.javashop;
-// Import java util random
+
 import java.util.Random;
 
 public class Product {
@@ -10,9 +10,9 @@ public class Product {
     private double price;
     private double vat;
 
-    // Builder
-    public Product(String name, int productCode, String description, double price, double vat) {
-        // Assignment of product code with random object to create product code as randomized number between 0 and 9999
+    // Constructor
+    public Product(String name, String description, double price, double vat) {
+        // Assignment of product code with random object to create product code as randomized number between 0 and 999999
         this.productCode = new Random().nextInt(1000000);
         this.name = name;
         this.description = description;
@@ -21,19 +21,19 @@ public class Product {
     }
 
     // Getter and Setter methods
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
 
-    public double getPrice(){
+    public double getPrice() {
         return price;
     }
 
-    public double getVat(){
+    public double getVat() {
         return vat;
     }
 
@@ -54,23 +54,17 @@ public class Product {
     }
 
     // Get method to obtain formatted code
-    public String getCode(){
+    public String getCode() {
         return String.format("%06d", productCode);
     }
 
     // Get method to obtain price including VAT
-    public double getVatPrice(){
-        return price + (price + vat / 100);
+    public double getVatPrice() {
+        return price + (price * vat / 100);
     }
-
 
     // Get method to obtain extended name with code product
-    public String getExtendedName(){
+    public String getExtendedName() {
         return getCode() + "/" + name;
     }
-
-
-
-
-
 }
