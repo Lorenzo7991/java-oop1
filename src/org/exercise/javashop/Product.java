@@ -48,6 +48,10 @@ public class Product {
         this.price = price;
     }
 
+    public void setVat(double vat) {
+        this.vat = vat;
+    }
+
     // Get method to obtain formatted code
     public String getCode() {
         return String.format("%06d", productCode);
